@@ -1,0 +1,45 @@
+﻿<Page x:Class="CookBook.Pages.Admin.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CookBook.Pages.Admin"
+      mc:Ignorable="d" 
+      Height="560" Width="790"
+      Title="Заказ">
+
+    <Canvas>
+        <DataGrid x:Name="DgOrders" Height="529" Canvas.Left="10" Canvas.Top="10" Width="420" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="DgOrders_SelectionChanged">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" x:Name="BtnDelete" Click="BtnDelete_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заказа" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Код" Binding="{Binding Talon}"/>
+                <DataGridTextColumn Header="Место выдачи" Binding="{Binding Point}"/>
+                <DataGridTextColumn Header="Сумма со скидкой" Binding="{Binding SaleSum}"/>
+                <DataGridTextColumn Header="Сумма без скидкой" Binding="{Binding Sum}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="DgOrderProducts" Height="449" Canvas.Left="435" Canvas.Top="10" Width="345" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" x:Name="BtnDeleteProduct" Click="BtnDelete_Click_1"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Book.Name}" Header="Название"/>
+                <DataGridTextColumn Binding="{Binding Amount}" Header="Количество"/>
+                <DataGridTextColumn Binding="{Binding Price}" Header="Цена без скидки"/>
+                <DataGridTextColumn Binding="{Binding SalePrice}" Header="Цена со скидкой"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="CbProduct" Canvas.Left="435" SelectedValuePath="ID" DisplayMemberPath="Name" Canvas.Top="464" Width="345"/>
+        <TextBox x:Name="TbAmount" Height="23" Canvas.Left="435" TextWrapping="Wrap" Canvas.Top="491" Width="345"/>
+        <Button x:Name="BtnAdd" Content="Добавить" Canvas.Left="435" Canvas.Top="519" Width="345" Click="BtnAdd_Click"/>
+
+    </Canvas>
+</Page>
